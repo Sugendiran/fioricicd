@@ -1,0 +1,74 @@
+<mvc:View
+    controllerName="nwproductdata02.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <Table
+                id="productsTable"
+                items="{
+                    path: '/Products',
+                    sorter: {
+                        path: 'ProductName',
+                        descending: false
+                    }
+                }"
+                growing="true"
+                growingThreshold="20"
+                growingScrollToLoad="true"
+                noDataText="No products found">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Products" level="H2"/>
+                        <ToolbarSpacer/>
+                        <SearchField
+                            id="searchField"
+                            width="30%"
+                            placeholder="Search by product name..."
+                            search=".onSearch"
+                            liveChange=".onSearch"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="5rem">
+                        <Text text="ID" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="Product Name" />
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+                        <Text text="Unit Price" />
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+                        <Text text="Units In Stock" />
+                    </Column>
+                    <Column hAlign="Center" width="8rem">
+                        <Text text="Status" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press=".onItemPress">
+                        <cells>
+                            <ObjectIdentifier title="{ProductID}" />
+                            <Text text="{ProductName}" />
+                            <ObjectNumber
+                                number="{
+                                    path: 'UnitPrice',
+                                    type: 'sap.ui.model.type.Float',
+                                    formatOptions: {
+                                        minFractionDigits: 2,
+                                        maxFractionDigits: 2
+                                    }
+                                }"
+                                unit="USD" />
+                            <Text text="{UnitsInStock}" />
+                            <ObjectStatus
+                                text="{= ${Discontinued} ? 'Discontinued' : 'Available' }"
+                                state="{= ${Discontinued} ? 'Error' : 'Success' }" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>
