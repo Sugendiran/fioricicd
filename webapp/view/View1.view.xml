@@ -4,7 +4,7 @@
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
         <content>
-        <Text text="This is for testing purpose 01"></Text>
+        <Text text="This is for testing purpose 02"></Text>
             <Table
                 id="productsTable"
                 items="{
